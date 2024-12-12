@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+#include <regex>
+using namespace std;
+
+struct Order {
+
+    int OrderNumber;
+    string date;
+    string productCode;
+
+    Order(int O, const string&  d, const string&  p) : OrderNumber (O), date(d), productCode(p) {
+    }
+    string FooProductCode () {
+        regex pattern("^Hu[0-9]$");
+        smatch matches;
+        if (regex_match(productCode, matches, pattern)) {
+            return "Продукт категорії Hu";
+        }else {
+            return "Невідома категорія";
+        }
+    }
+};
+int main()
+{
+    Order order =
+        {555,"10.11.2024","Hu1"};
+    cout<<order.FooProductCode()<<endl;
+
+
+}
